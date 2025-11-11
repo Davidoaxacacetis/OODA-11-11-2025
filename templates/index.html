@@ -1,0 +1,9 @@
+{%extends "base.html"%}
+{%block contenido%}
+<div class="input-group mb-3">
+    <form action="{{url_for('search')}}" method="POST">
+    <input type="text" class="form-control" id="pokemon_name" name="pokemon_name" placeholder="Pokemon" required aria-label="Pokemon" aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+    </form>
+</div>
+{%endblock%}
