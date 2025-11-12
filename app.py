@@ -27,7 +27,12 @@ def search_pokemon():
             pokemon_data = resp.json()
 
             pokemon_info = {
-                "name": pokemon_data.get['name'].title()
+                'name': pokemon_data['name'].title(),
+                'id': pokemon_data['id'],
+                'height': pokemon_data['height'],
+                'weight': pokemon_data['weight'],
+                'sprites': pokemon_data['sprites']['front_default'],
+                'abilities': [ability['ability']['name'] for ability in pokemon_data['abilities']],
             }
 
             return render_template("pokemon.html", pokemon=pokemon_info)
