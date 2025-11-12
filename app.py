@@ -27,12 +27,17 @@ def search_pokemon():
             pokemon_data = resp.json()
 
             pokemon_info = {
-                "id": pokemon_data.get("id"),
-                "name": pokemon_data.get("name", ""),
-                "sprite": pokemon_data.get("sprites", {}).get("front_default"),
+                "name": pokemon_data.get['name'].title()
             }
-        return render_template("pokemon.html", pokemon=pokemon_info)
 
+            return render_template("pokemon.html", pokemon=pokemon_info)
+
+        else:
+            flash("Pokémon no encontrado. Intenta de nuevo.", "error")
+            return redirect(url_for("index"))
+    except requests.RequestException:
+        flash("Error al conectar con la API de Pokémon. Intenta más tarde.", "error")
+        return redirect(url_for("index"))
 
 if __name__ == '__main__':
     app.run(debug=True)
