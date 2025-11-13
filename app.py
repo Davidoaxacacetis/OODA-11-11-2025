@@ -13,7 +13,7 @@ def index():
 def poke():
     return render_template("pokemon.html")
 
-@app.route("/search", methods=['POST'], endpoint='search')
+@app.route("/search", methods=['GET','POST'])
 def search_pokemon():
     pokemon_name = request.form.get('pokemon_name', '').strip().lower()
     if not pokemon_name:
@@ -29,8 +29,8 @@ def search_pokemon():
             pokemon_info = {
                 'name': pokemon_data['name'].title(),
                 'id': pokemon_data['id'],
-                'height': pokemon_data['height'],
-                'weight': pokemon_data['weight'],
+                'height': pokemon_data['height']/10,
+                'weight': pokemon_data['weight']/10,
                 'sprites': pokemon_data['sprites']['front_default'],
                 'abilities': [ability['ability']['name'] for ability in pokemon_data['abilities']],
             }

@@ -1,48 +1,29 @@
 {%extends "base.html"%}
 {%block contenido%}
-<div class="card  mb-3">
+<h1 class="text-center mb-4">{{pokemon.name}}</h1>
 
+<div class="text-center">
+    <img src="{{pokemon.sprites}}" alt="{{pokemon.name}}" class="img_fluid mb-3">
 </div>
-{%endblock%}
-// ...existing code...
-{%extends "base.html"%}
-{%block contenido%}
-<div class="card mb-3" style="max-width:720px;">
-  <div class="row g-0">
-    <div class="col-md-4 d-flex align-items-center justify-content-center bg-light">
-      {% if pokemon.sprite %}
-      <img src="{{ pokemon.sprite }}" class="img-fluid p-3" alt="{{ pokemon.name }}">
-      {% elif pokemon.sprites.front_default %}
-      <img src="{{ pokemon.sprites.front_default }}" class="img-fluid p-3" alt="{{ pokemon.name }}">
-      {% else %}
-      <div class="text-muted p-4">Sin imagen</div>
-      {% endif %}
-    </div>
 
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ pokemon.name|title }} <small class="text-muted">#{{ pokemon.id }}</small></h5>
-        <p class="card-text"><strong>Tipo:</strong>
-          {% for tipo in pokemon.types %}
-            <span class="badge bg-primary">{{ tipo.type.name|title }}</span>
-          {% endfor %}
-        </p>
-        <p class="card-text"><strong>Habilidades:</strong>
-          {% for habilidad in pokemon.abilities %}
-            <span class="badge bg-secondary">{{ habilidad.ability.name|title }}</span>
-          {% endfor %}
-        </p>
-        <p class="card-text"><strong>Estadísticas:</strong></p>
-        <ul class="list-group list-group-flush">
-          {% for stat in pokemon.stats %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              {{ stat.stat.name|title }}
-              <span class="badge bg-success rounded-pill">{{ stat.base_stat }}</span>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </div>
+<p class="text-center">
+    <strong>ID:</strong>{{pokemon.id}}
+</p>
+
+<p class="text-center">
+    <strong>Altura:</strong> {{pokemon.heigt}} m
+    <strong>Peso:</strong>{{pokemon.weight}}
+</p>
+
+<h3 class="mt-4">Hablidades:</h3>
+
+<ul class="list-group">
+    {%for ability in pokemon.abilities %}
+    <li class="list-group-item bg-dark text-white border-light">
+        {{ability}}
+    </li>
+</ul>{%endfor%}
+<div class="text-center mt-4">
+    
 </div>
 {%endblock%}
